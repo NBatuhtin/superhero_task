@@ -20,5 +20,5 @@ def get_tallest_hero(gender, has_work):
     if not filtered_heroes:
         return None
 
-    tallest_hero = max(filtered_heroes, key=lambda h: int(h.get("appearance", {}).get("height", ["0"])[1].split()[0]))
+    tallest_hero = max(filtered_heroes, key=lambda h: float(h.get("appearance", {}).get("height", ["0"])[1].split()[0]))
     return tallest_hero
