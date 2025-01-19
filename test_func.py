@@ -1,8 +1,9 @@
 from func import get_tallest_hero
 import requests
+import pytest
 
 
-# Тест на самого высокого мужчину с работой
+    # Тест на самого высокого мужчину с работой
 def test_tallest_male_with_work():
     hero = get_tallest_hero("Male", True)
     assert hero is not None, "Ожидался герой, но получено None"
@@ -40,3 +41,13 @@ def test_api_response_status():
     url = "https://akabab.github.io/superhero-api/api/all.json"
     response = requests.get(url)
     assert response.status_code == 200, f"API недоступно, код ответа: {response.status_code}"
+
+    # Проверка на неверный тип данных для gender
+def test_invalid_gender_type():
+    with pytest.raises(TypeError):
+        get_tallest_hero(12345, True)
+
+    # Проверка на неверный тип данных для has_work
+def test_invalid_has_work_type():
+    with pytest.raises(TypeError):
+        get_tallest_hero("Male", "Yes")

@@ -2,6 +2,11 @@ import requests
 
 
 def get_tallest_hero(gender, has_work):
+    if not isinstance(gender, str):
+        raise TypeError("gender должен быть строкой")
+    if not isinstance(has_work, bool):
+        raise TypeError("has_work должен быть булевым значением")
+
     url = "https://akabab.github.io/superhero-api/api/all.json"
     response = requests.get(url)
 
